@@ -35,4 +35,13 @@ public class Vehicle {
         this.type = type;
     }
     //endregion
+
+
+//    @Override
+//    public String toString() {
+//        return "Vehicle{" +
+//                "brand='" + brand + '\'' +
+//                ", type='" + type + '\'' +
+//                '}';
+//    }
 }

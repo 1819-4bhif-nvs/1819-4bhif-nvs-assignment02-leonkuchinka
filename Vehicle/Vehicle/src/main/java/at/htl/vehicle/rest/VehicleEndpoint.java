@@ -21,6 +21,7 @@ public class VehicleEndpoint {
     public List<Vehicle> findAll(){
         List<Vehicle> all = new ArrayList<>();
         all.add(find(42));
+        all.add(find(43));
         return all;
     }
 
