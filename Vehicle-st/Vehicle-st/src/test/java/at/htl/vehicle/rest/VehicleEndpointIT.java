@@ -13,6 +13,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -46,6 +48,16 @@ public class VehicleEndpointIT {
         JsonObject vehicle = payload.getJsonObject(0);
         assertThat(vehicle.getString("brand"), is("Opel 42"));
         assertThat(vehicle.getString("type"), is("Commodore"));
+    }
+
+    @Test
+    public void t03_crud() {
+        JsonObject dedicatedVehicle = this.target.path("43").request(MediaType.APPLICATION_JSON).get(JsonObject.class);
+        assertThat(dedicatedVehicle.getString("brand"), containsString("43"));
+        assertThat(dedicatedVehicle.getString("brand"), equalTo("Opel 43"));
+
+        Response deleteResponse = this.target.path("42").request(MediaType.APPLICATION_JSON).delete();
+        assertThat(deleteResponse.getStatus(), is(204));//no content
     }
 
 }
